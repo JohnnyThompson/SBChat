@@ -17,7 +17,7 @@ class AuthViewController: UIViewController {
         text: "Get started wit")
     let emailLabel = UILabel(
         text: "Or sign up with")
-    let alreadyOnBoardLabel = UILabel(
+    let alreadyOnboardLabel = UILabel(
         text: "Already onboard?")
     
     let googleButton = UIButton(
@@ -43,16 +43,21 @@ class AuthViewController: UIViewController {
         setupConstraints()
     }
     
+}
+
+// MARK: - SetupConstraints
+
+extension AuthViewController {
     private func setupConstraints()  {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         let googleView = ButtonFormView(label: googleLabel, button: googleButton)
         let emailView = ButtonFormView(label: emailLabel, button: emailButton)
-        let loginView = ButtonFormView(label: alreadyOnBoardLabel, button: loginButton)
+        let loginView = ButtonFormView(label: alreadyOnboardLabel, button: loginButton)
         
         let stackView = UIStackView(arrangedSubviews: [googleView, emailView, loginView], axis: .vertical, spacing: 40)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         
         view.addSubview(logoImageView)
         view.addSubview(stackView)
@@ -68,10 +73,8 @@ class AuthViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
-    
+        
     }
-
-
 }
 
 // MARK: - SwiftUI
