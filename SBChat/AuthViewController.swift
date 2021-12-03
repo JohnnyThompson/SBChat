@@ -22,7 +22,7 @@ class AuthViewController: UIViewController {
     
     let googleButton = UIButton(
         title: "Google",
-        titleColor: .white,
+        titleColor: .black,
         backgroundColor: .white,
         isShadow: true)
     let emailButton = UIButton(
@@ -44,8 +44,31 @@ class AuthViewController: UIViewController {
     }
     
     private func setupConstraints()  {
-        view.addSubview(logoImageView)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
+        let googleView = ButtonFormView(label: googleLabel, button: googleButton)
+        let emailView = ButtonFormView(label: emailLabel, button: emailButton)
+        let loginView = ButtonFormView(label: alreadyOnBoardLabel, button: loginButton)
+        
+        let stackView = UIStackView(arrangedSubviews: [googleView, emailView, loginView], axis: .vertical, spacing: 40)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        
+        view.addSubview(logoImageView)
+        view.addSubview(stackView)
+        
+        
+        NSLayoutConstraint.activate([
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160)
+        ])
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 80),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+        ])
+    
     }
 
 
