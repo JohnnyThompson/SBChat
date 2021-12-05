@@ -22,6 +22,9 @@
 		262264AE275A9A0300BBE148 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264AD275A9A0300BBE148 /* SignUpViewController.swift */; };
 		262264B0275A9D2E00BBE148 /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264AF275A9D2E00BBE148 /* OneLineTextField.swift */; };
 		262264B2275CE3CF00BBE148 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264B1275CE3CF00BBE148 /* LoginViewController.swift */; };
+		262264B4275CF66500BBE148 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264B3275CF66500BBE148 /* SetupProfileViewController.swift */; };
+		262264B6275CF90B00BBE148 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264B5275CF90B00BBE148 /* AddPhotoView.swift */; };
+		2652AF28275D084E00A7C0C2 /* UISegmentedControll + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652AF27275D084E00A7C0C2 /* UISegmentedControll + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		262264AD275A9A0300BBE148 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		262264AF275A9D2E00BBE148 /* OneLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextField.swift; sourceTree = "<group>"; };
 		262264B1275CE3CF00BBE148 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		262264B3275CF66500BBE148 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
+		262264B5275CF90B00BBE148 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
+		2652AF27275D084E00A7C0C2 /* UISegmentedControll + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControll + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,7 @@
 				2622648D275A631E00BBE148 /* AuthViewController.swift */,
 				262264AD275A9A0300BBE148 /* SignUpViewController.swift */,
 				262264B1275CE3CF00BBE148 /* LoginViewController.swift */,
+				262264B3275CF66500BBE148 /* SetupProfileViewController.swift */,
 				262264A8275A7AEA00BBE148 /* Extensions */,
 				26226492275A631E00BBE148 /* Assets.xcassets */,
 				26226494275A631E00BBE148 /* LaunchScreen.storyboard */,
@@ -94,6 +101,7 @@
 				262264A1275A73FA00BBE148 /* UIColor + Extension.swift */,
 				2622649F275A731E00BBE148 /* UIFont + Extension.swift */,
 				262264A5275A78E600BBE148 /* UIImageView + Extension.swift */,
+				2652AF27275D084E00A7C0C2 /* UISegmentedControll + Extension.swift */,
 				262264A3275A779E00BBE148 /* UILabel + Extension.swift */,
 				262264AB275A85FE00BBE148 /* UIStackView + Extension.swift */,
 			);
@@ -104,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				262264AF275A9D2E00BBE148 /* OneLineTextField.swift */,
+				262264B5275CF90B00BBE148 /* AddPhotoView.swift */,
 				262264A9275A810300BBE148 /* ButtonFormView.swift */,
 				262264A7275A7ADF00BBE148 /* UIKit */,
 			);
@@ -184,8 +193,11 @@
 				262264AE275A9A0300BBE148 /* SignUpViewController.swift in Sources */,
 				262264A0275A731E00BBE148 /* UIFont + Extension.swift in Sources */,
 				2622648E275A631E00BBE148 /* AuthViewController.swift in Sources */,
+				262264B4275CF66500BBE148 /* SetupProfileViewController.swift in Sources */,
 				262264A4275A779E00BBE148 /* UILabel + Extension.swift in Sources */,
 				262264AC275A85FE00BBE148 /* UIStackView + Extension.swift in Sources */,
+				2652AF28275D084E00A7C0C2 /* UISegmentedControll + Extension.swift in Sources */,
+				262264B6275CF90B00BBE148 /* AddPhotoView.swift in Sources */,
 				262264AA275A810300BBE148 /* ButtonFormView.swift in Sources */,
 				2622648A275A631E00BBE148 /* AppDelegate.swift in Sources */,
 				262264A6275A78E600BBE148 /* UIImageView + Extension.swift in Sources */,
