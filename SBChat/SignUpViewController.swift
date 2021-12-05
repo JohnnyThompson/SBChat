@@ -9,6 +9,8 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    // MARK: - Properties
+    
     let welcomLabel = UILabel(text: "Good to see you", font: .avenir26())
     
     let emailLabel = UILabel(text: "Email")
@@ -16,19 +18,26 @@ class SignUpViewController: UIViewController {
     let confirmPasswordLabel = UILabel(text: "Confirm password")
     let alreadyOnboardLabel = UILabel(text: "Already onboard?")
     
-    let signUpButton = UIButton(title: "Sign up", titleColor: .white, backgroundColor: .buttonDark())
-    let loginButton = UIButton()
+    let signUpButton = UIButton(
+        title: "Sign up",
+        titleColor: .white,
+        backgroundColor: .buttonDark())
+    let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Login", for: .normal)
+        button.setTitleColor(.buttonRed(), for: .normal)
+        button.titleLabel?.font = .avenir20()
+        return button
+    }()
     
     let emailTextField = OneLineTextField(font: .avenir20())
     let passwordTextField = OneLineTextField(font: .avenir20())
     let confirmPasswordTextField = OneLineTextField(font: .avenir20())
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(.buttonRed(), for: .normal)
-        loginButton.titleLabel?.font = .avenir20()
         view.backgroundColor = .white
         setupConstraints()
     }
@@ -38,9 +47,19 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController {
     private func setupConstraints() {
-        let emailStackView = UIStackView(arrangedSubviews: [emailLabel, emailTextField], axis: .vertical, spacing: 0)
-        let passwordStackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTextField], axis: .vertical, spacing: 0)
-        let confirmPasswordStackView = UIStackView(arrangedSubviews: [confirmPasswordLabel, confirmPasswordTextField], axis: .vertical, spacing: 0)
+        
+        let emailStackView = UIStackView(
+            arrangedSubviews: [emailLabel, emailTextField],
+            axis: .vertical,
+            spacing: 0)
+        let passwordStackView = UIStackView(
+            arrangedSubviews: [passwordLabel, passwordTextField],
+            axis: .vertical,
+            spacing: 0)
+        let confirmPasswordStackView = UIStackView(
+            arrangedSubviews: [confirmPasswordLabel, confirmPasswordTextField],
+            axis: .vertical,
+            spacing: 0)
         
         signUpButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
@@ -53,20 +72,22 @@ extension SignUpViewController {
             axis: .vertical,
             spacing: 40)
         
-        let buttonStackView = UIStackView(
+        loginButton.contentHorizontalAlignment = .leading
+        let bottomStackView = UIStackView(
             arrangedSubviews: [
                 alreadyOnboardLabel,
                 loginButton],
             axis: .horizontal,
-            spacing: -1)
+            spacing: 10)
+        bottomStackView.alignment = .firstBaseline
         
         welcomLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(welcomLabel)
         view.addSubview(stackView)
-        view.addSubview(buttonStackView)
+        view.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
             welcomLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
@@ -80,10 +101,8 @@ extension SignUpViewController {
         ])
         
         NSLayoutConstraint.activate([
-            buttonStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 80),
-            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -110)
-            
+            bottomStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 80),
+            bottomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
         ])
         
     }

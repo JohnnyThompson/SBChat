@@ -9,6 +9,8 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
+    // MARK: - Properties
+    
     let logoImageView = UIImageView(
         image: #imageLiteral(resourceName: "Logo"),
         contentMode: .scaleAspectFit)
@@ -35,7 +37,8 @@ class AuthViewController: UIViewController {
         backgroundColor: .white,
         isShadow: true)
     
-
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -78,6 +81,7 @@ extension AuthViewController {
 }
 
 // MARK: - SwiftUI
+
 import SwiftUI
 
 struct AuthViewControllerProvider: PreviewProvider {

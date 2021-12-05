@@ -21,6 +21,7 @@
 		262264AC275A85FE00BBE148 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264AB275A85FE00BBE148 /* UIStackView + Extension.swift */; };
 		262264AE275A9A0300BBE148 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264AD275A9A0300BBE148 /* SignUpViewController.swift */; };
 		262264B0275A9D2E00BBE148 /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264AF275A9D2E00BBE148 /* OneLineTextField.swift */; };
+		262264B2275CE3CF00BBE148 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262264B1275CE3CF00BBE148 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		262264AB275A85FE00BBE148 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		262264AD275A9A0300BBE148 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		262264AF275A9D2E00BBE148 /* OneLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextField.swift; sourceTree = "<group>"; };
+		262264B1275CE3CF00BBE148 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				2622648B275A631E00BBE148 /* SceneDelegate.swift */,
 				2622648D275A631E00BBE148 /* AuthViewController.swift */,
 				262264AD275A9A0300BBE148 /* SignUpViewController.swift */,
+				262264B1275CE3CF00BBE148 /* LoginViewController.swift */,
 				262264A8275A7AEA00BBE148 /* Extensions */,
 				26226492275A631E00BBE148 /* Assets.xcassets */,
 				26226494275A631E00BBE148 /* LaunchScreen.storyboard */,
@@ -188,6 +191,7 @@
 				262264A6275A78E600BBE148 /* UIImageView + Extension.swift in Sources */,
 				262264A2275A73FA00BBE148 /* UIColor + Extension.swift in Sources */,
 				2622648C275A631E00BBE148 /* SceneDelegate.swift in Sources */,
+				262264B2275CE3CF00BBE148 /* LoginViewController.swift in Sources */,
 				2622649E275A70DF00BBE148 /* UIButton + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
