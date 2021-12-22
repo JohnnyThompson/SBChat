@@ -90,7 +90,8 @@ extension SignUpViewController {
         view.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
-            welcomLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            welcomLabel.topAnchor.constraint(lessThanOrEqualTo: view.topAnchor, constant: 160),
+
             welcomLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
@@ -101,8 +102,9 @@ extension SignUpViewController {
         ])
         
         NSLayoutConstraint.activate([
-            bottomStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 80),
+            bottomStackView.topAnchor.constraint(lessThanOrEqualTo: stackView.bottomAnchor, constant: 80),
             bottomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            bottomStackView.bottomAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
         ])
         
     }
