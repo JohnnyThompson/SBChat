@@ -33,6 +33,9 @@
 		2652AF2E275D276E00A7C0C2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652AF2D275D276E00A7C0C2 /* MainTabBarController.swift */; };
 		2652AF30275D27BD00A7C0C2 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652AF2F275D27BD00A7C0C2 /* PeopleViewController.swift */; };
 		268096122778B76600FDD040 /* WaitingChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268096112778B76600FDD040 /* WaitingChatCell.swift */; };
+		26DDFD3127820236009A7940 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DDFD3027820236009A7940 /* users.json */; };
+		26DDFD33278202D5009A7940 /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DDFD32278202D5009A7940 /* MUser.swift */; };
+		26DDFD35278202E1009A7940 /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DDFD34278202E1009A7940 /* MChat.swift */; };
 		26ECECC427616D6900AC943B /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ECECC227616D6900AC943B /* waitingChats.json */; };
 		26ECECC527616D6900AC943B /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ECECC327616D6900AC943B /* activeChats.json */; };
 		26ECECC727616E9600AC943B /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ECECC627616E9600AC943B /* Bundle.swift */; };
@@ -67,6 +70,9 @@
 		2652AF2D275D276E00A7C0C2 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2652AF2F275D27BD00A7C0C2 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		268096112778B76600FDD040 /* WaitingChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatCell.swift; sourceTree = "<group>"; };
+		26DDFD3027820236009A7940 /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
+		26DDFD32278202D5009A7940 /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
+		26DDFD34278202E1009A7940 /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
 		26ECECC227616D6900AC943B /* waitingChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
 		26ECECC327616D6900AC943B /* activeChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		26ECECC627616E9600AC943B /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 			children = (
 				26226489275A631E00BBE148 /* AppDelegate.swift */,
 				2622648B275A631E00BBE148 /* SceneDelegate.swift */,
+				26DDFD3627820329009A7940 /* Model */,
 				2652AF2B275D273D00A7C0C2 /* Sigin & Auth */,
 				2652AF2C275D275B00A7C0C2 /* Controllers */,
 				261698202778BF6400E75F80 /* Protocols */,
@@ -133,8 +140,6 @@
 				2652AF27275D084E00A7C0C2 /* UISegmentedControll + Extension.swift */,
 				262264A3275A779E00BBE148 /* UILabel + Extension.swift */,
 				262264AB275A85FE00BBE148 /* UIStackView + Extension.swift */,
-				26ECECC327616D6900AC943B /* activeChats.json */,
-				26ECECC227616D6900AC943B /* waitingChats.json */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -147,6 +152,9 @@
 				262264A9275A810300BBE148 /* ButtonFormView.swift */,
 				26252AD92778B02B0088E7FA /* GradientView.swift */,
 				262264A7275A7ADF00BBE148 /* UIKit */,
+				26DDFD3027820236009A7940 /* users.json */,
+				26ECECC327616D6900AC943B /* activeChats.json */,
+				26ECECC227616D6900AC943B /* waitingChats.json */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -176,12 +184,29 @@
 			children = (
 				2652AF2D275D276E00A7C0C2 /* MainTabBarController.swift */,
 				2652AF29275D233200A7C0C2 /* ListViewController.swift */,
-				261698212778C1CE00E75F80 /* SectionHeader.swift */,
 				2652AF2F275D27BD00A7C0C2 /* PeopleViewController.swift */,
 				26ECECC627616E9600AC943B /* Bundle.swift */,
+				266C53C12782005C000F0AC9 /* Header */,
 				2646BABD276540C100D49AB7 /* Cell */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		266C53C12782005C000F0AC9 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				261698212778C1CE00E75F80 /* SectionHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		26DDFD3627820329009A7940 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26DDFD32278202D5009A7940 /* MUser.swift */,
+				26DDFD34278202E1009A7940 /* MChat.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DDFD3127820236009A7940 /* users.json in Resources */,
 				26ECECC427616D6900AC943B /* waitingChats.json in Resources */,
 				26226496275A631E00BBE148 /* LaunchScreen.storyboard in Resources */,
 				26226493275A631E00BBE148 /* Assets.xcassets in Resources */,
@@ -256,12 +282,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DDFD35278202E1009A7940 /* MChat.swift in Sources */,
 				2652AF2A275D233200A7C0C2 /* ListViewController.swift in Sources */,
 				262264B0275A9D2E00BBE148 /* OneLineTextField.swift in Sources */,
 				261698222778C1CE00E75F80 /* SectionHeader.swift in Sources */,
 				26252ADA2778B02B0088E7FA /* GradientView.swift in Sources */,
 				2652AF2E275D276E00A7C0C2 /* MainTabBarController.swift in Sources */,
 				262264AE275A9A0300BBE148 /* SignUpViewController.swift in Sources */,
+				26DDFD33278202D5009A7940 /* MUser.swift in Sources */,
 				2646BABF276540D000D49AB7 /* ActiveChatCell.swift in Sources */,
 				262264A0275A731E00BBE148 /* UIFont + Extension.swift in Sources */,
 				2652AF30275D27BD00A7C0C2 /* PeopleViewController.swift in Sources */,
