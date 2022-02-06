@@ -39,6 +39,8 @@
 		26ECECC427616D6900AC943B /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ECECC227616D6900AC943B /* waitingChats.json */; };
 		26ECECC527616D6900AC943B /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ECECC327616D6900AC943B /* activeChats.json */; };
 		26ECECC727616E9600AC943B /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ECECC627616E9600AC943B /* Bundle.swift */; };
+		26F65C4827B02AD50048196F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C4727B02AD50048196F /* UserCell.swift */; };
+		26F65C4A27B02CA50048196F /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C4927B02CA50048196F /* UIViewController + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		26ECECC227616D6900AC943B /* waitingChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
 		26ECECC327616D6900AC943B /* activeChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		26ECECC627616E9600AC943B /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		26F65C4727B02AD50048196F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		26F65C4927B02CA50048196F /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,7 @@
 				2652AF27275D084E00A7C0C2 /* UISegmentedControll + Extension.swift */,
 				262264A3275A779E00BBE148 /* UILabel + Extension.swift */,
 				262264AB275A85FE00BBE148 /* UIStackView + Extension.swift */,
+				26F65C4927B02CA50048196F /* UIViewController + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			children = (
 				2646BABE276540D000D49AB7 /* ActiveChatCell.swift */,
 				268096112778B76600FDD040 /* WaitingChatCell.swift */,
+				26F65C4727B02AD50048196F /* UserCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -302,6 +308,8 @@
 				262264AA275A810300BBE148 /* ButtonFormView.swift in Sources */,
 				26ECECC727616E9600AC943B /* Bundle.swift in Sources */,
 				2616981F2778BF4E00E75F80 /* SelfConfigurationCell.swift in Sources */,
+				26F65C4827B02AD50048196F /* UserCell.swift in Sources */,
+				26F65C4A27B02CA50048196F /* UIViewController + Extension.swift in Sources */,
 				2622648A275A631E00BBE148 /* AppDelegate.swift in Sources */,
 				268096122778B76600FDD040 /* WaitingChatCell.swift in Sources */,
 				262264A6275A78E600BBE148 /* UIImageView + Extension.swift in Sources */,
