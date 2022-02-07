@@ -47,66 +47,57 @@ extension ActiveChatCell {
     gradientView.translatesAutoresizingMaskIntoConstraints = false
     friendName.translatesAutoresizingMaskIntoConstraints = false
     lastMessage.translatesAutoresizingMaskIntoConstraints = false
-    
     friendImageView.backgroundColor = .red
     gradientView.backgroundColor = .black
-    
     addSubview(friendImageView)
     addSubview(gradientView)
     addSubview(friendName)
     addSubview(lastMessage)
-    
-    //friendImageView Constraints
+    // friendImageView Constraints
     NSLayoutConstraint.activate([
       friendImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
       friendImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
       friendImageView.heightAnchor.constraint(equalToConstant: 78),
       friendImageView.widthAnchor.constraint(equalToConstant: 78)
     ])
-    
-    //gradientImageView Constraints
+    // gradientImageView Constraints
     NSLayoutConstraint.activate([
       gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
       gradientView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
       gradientView.heightAnchor.constraint(equalToConstant: 78),
       gradientView.widthAnchor.constraint(equalToConstant: 8)
     ])
-    
-    //friendName Constraints
+    // friendName Constraints
     NSLayoutConstraint.activate([
       friendName.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-      friendName.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: 16),
-      friendName.trailingAnchor.constraint(equalTo: gradientView.leadingAnchor, constant: 16),
+      friendName.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor,
+                                          constant: 16),
+      friendName.trailingAnchor.constraint(equalTo: gradientView.leadingAnchor,
+                                           constant: 16)
     ])
-    
-    //lasMessage Constrains
+    // lasMessage Constrains
     NSLayoutConstraint.activate([
       lastMessage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-      lastMessage.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: 16),
-      lastMessage.trailingAnchor.constraint(equalTo: gradientView.leadingAnchor, constant: 16),
+      lastMessage.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor,
+                                           constant: 16),
+      lastMessage.trailingAnchor.constraint(equalTo: gradientView.leadingAnchor,
+                                            constant: 16)
     ])
   }
 }
-
 // MARK: - SwiftUI
-
 import SwiftUI
 
 struct ActiveChatProvider: PreviewProvider {
   static var previews: some View {
     ContainerView().edgesIgnoringSafeArea(.all)
   }
-  
   struct ContainerView: UIViewControllerRepresentable {
-    
     let tabBarVC = MainTabBarController()
-    
     func makeUIViewController(context: Context) -> some UIViewController {
       return tabBarVC
     }
-    
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     }
   }
 }
-

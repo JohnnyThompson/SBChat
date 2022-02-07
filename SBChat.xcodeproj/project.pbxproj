@@ -41,9 +41,11 @@
 		26ECECC727616E9600AC943B /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ECECC627616E9600AC943B /* Bundle.swift */; };
 		26F65C4827B02AD50048196F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C4727B02AD50048196F /* UserCell.swift */; };
 		26F65C4A27B02CA50048196F /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F65C4927B02CA50048196F /* UIViewController + Extension.swift */; };
+		D9EE49133B041454E0F843A9 /* Pods_SBChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082D240CF8128EAC141D506B /* Pods_SBChat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082D240CF8128EAC141D506B /* Pods_SBChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2616981E2778BF4D00E75F80 /* SelfConfigurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfigurationCell.swift; sourceTree = "<group>"; };
 		261698212778C1CE00E75F80 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		26226486275A631E00BBE148 /* SBChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,8 @@
 		26ECECC627616E9600AC943B /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		26F65C4727B02AD50048196F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		26F65C4927B02CA50048196F /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		2B341652195CD20EC2ACECA7 /* Pods-SBChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBChat.debug.xcconfig"; path = "Target Support Files/Pods-SBChat/Pods-SBChat.debug.xcconfig"; sourceTree = "<group>"; };
+		B25F78BC539F68B19D1993BA /* Pods-SBChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBChat.release.xcconfig"; path = "Target Support Files/Pods-SBChat/Pods-SBChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9EE49133B041454E0F843A9 /* Pods_SBChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +111,8 @@
 			children = (
 				26226488275A631E00BBE148 /* SBChat */,
 				26226487275A631E00BBE148 /* Products */,
+				3EF8459A7CE54CD5C66EEBFA /* Pods */,
+				B515BCE7D50D72763299E837 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,6 +222,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3EF8459A7CE54CD5C66EEBFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B341652195CD20EC2ACECA7 /* Pods-SBChat.debug.xcconfig */,
+				B25F78BC539F68B19D1993BA /* Pods-SBChat.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B515BCE7D50D72763299E837 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				082D240CF8128EAC141D506B /* Pods_SBChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2622649A275A631E00BBE148 /* Build configuration list for PBXNativeTarget "SBChat" */;
 			buildPhases = (
+				5BD667D754313F6B3327E480 /* [CP] Check Pods Manifest.lock */,
 				26226482275A631E00BBE148 /* Sources */,
 				26226483275A631E00BBE148 /* Frameworks */,
 				26226484275A631E00BBE148 /* Resources */,
+				26F65C4B27B1AAD00048196F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -282,6 +308,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26F65C4B27B1AAD00048196F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		5BD667D754313F6B3327E480 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SBChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		26226482275A631E00BBE148 /* Sources */ = {
@@ -452,6 +520,7 @@
 		};
 		2622649B275A631E00BBE148 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B341652195CD20EC2ACECA7 /* Pods-SBChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -479,6 +548,7 @@
 		};
 		2622649C275A631E00BBE148 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B25F78BC539F68B19D1993BA /* Pods-SBChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -21,20 +21,18 @@ class PeopleViewController: UIViewController {
       }
     }
   }
-  
  // MARK: - Initialization
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setupSearchBar()
     setupCollectionView()
     createDataSource()
     reloadData()
   }
-  
   // MARK: - Module functions
   private func setupCollectionView() {
-    collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionLayout())
+    collectionView = UICollectionView(frame: view.bounds,
+                                      collectionViewLayout: createCompositionLayout())
     collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     collectionView.backgroundColor = .mainWhite()
     view.addSubview(collectionView)
@@ -54,12 +52,10 @@ class PeopleViewController: UIViewController {
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.delegate = self
   }
-  
   private func reloadData() {
     var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
     snapshot.appendSections([.users])
     snapshot.appendItems(users, toSection: .users)
-    
     dataSource?.apply(snapshot, animatingDifferences: true)
   }
 }
@@ -68,8 +64,7 @@ class PeopleViewController: UIViewController {
 
 extension PeopleViewController {
   private func createCompositionLayout() -> UICollectionViewLayout {
-    let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnviroment) in
-      
+    let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) in
       guard let section = Section(rawValue: sectionIndex) else {
         fatalError("Unknown section kind")
       }
@@ -77,55 +72,45 @@ extension PeopleViewController {
       case .users:
         return self.createUsersSection()
       }
-      
     }
     let config = UICollectionViewCompositionalLayoutConfiguration()
     config.interSectionSpacing = 20
     layout.configuration = config
     return layout
   }
-  
+
   private func createUsersSection() -> NSCollectionLayoutSection {
-    
     let spacing = CGFloat(15)
-    
-    let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1),
-      heightDimension: .fractionalHeight(1))
+    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                          heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1),
-      heightDimension: .fractionalWidth(0.6))
-    let group = NSCollectionLayoutGroup.horizontal(
-      layoutSize: groupSize,
-      subitem: item,
-      count: 2)
+    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                           heightDimension: .fractionalWidth(0.6))
+    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                   subitem: item,
+                                                   count: 2)
     group.interItemSpacing = .fixed(spacing)
-    
     let section = NSCollectionLayoutSection(group: group)
     section.interGroupSpacing = spacing
-    section.contentInsets = NSDirectionalEdgeInsets(
-      top: 16,
-      leading: 16,
-      bottom: 0,
-      trailing: 16)
-    
+    section.contentInsets = NSDirectionalEdgeInsets(top: 16,
+                                                    leading: 16,
+                                                    bottom: 0,
+                                                    trailing: 16)
     let sectionHeader = createSectionHeader()
     section.boundarySupplementaryItems = [sectionHeader]
-    
     return section
   }
-  
+
   private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
     let sectionHeaderSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1),
-      heightDimension: .estimated(1))
-    
+      heightDimension: .estimated(1)
+    )
     let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
       layoutSize: sectionHeaderSize,
       elementKind: UICollectionView.elementKindSectionHeader,
-      alignment: .top)
-    
+      alignment: .top
+    )
     return sectionHeader
   }
 }
@@ -133,13 +118,12 @@ extension PeopleViewController {
 // MARK: - DataSource
 extension PeopleViewController {
   private func createDataSource() {
-    dataSource = UICollectionViewDiffableDataSource<Section,MUser>(
+    dataSource = UICollectionViewDiffableDataSource<Section, MUser>(
       collectionView: collectionView,
       cellProvider: { collectionView, indexPath, user in
         guard let section = Section(rawValue: indexPath.section) else {
           fatalError("Unknown section kind")
         }
-        
         switch section {
         case .users:
           return self.configure(collectionView: collectionView,
@@ -148,49 +132,45 @@ extension PeopleViewController {
                                 indexPath: indexPath)
         }
       })
-    
-    dataSource?.supplementaryViewProvider = {
-      collectionView, kind, indexPath in
-      guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseId, for: indexPath) as? SectionHeader else {
-        fatalError("Can not create new sectioon Header")}
+    dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+      guard
+        let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+          ofKind: kind,
+          withReuseIdentifier: SectionHeader.reuseId,
+          for: indexPath
+        ) as? SectionHeader
+      else {
+        fatalError("Can not create new sectioon Header")
+      }
       guard let section = Section(rawValue: indexPath.section) else {
         fatalError("Unknow section kind")
       }
       let items = self.dataSource.snapshot().itemIdentifiers(inSection: .users)
-      sectionHeader.configurate(
-        text: section.description(usersCount: items.count),
-        font: .systemFont(ofSize: 36, weight: .light),
-        textColor: .label)
-      
+      sectionHeader.configurate(text: section.description(usersCount: items.count),
+                                font: .systemFont(ofSize: 36, weight: .light),
+                                textColor: .label)
       return sectionHeader
     }
   }
 }
-
-// MARK: - UISearchBarDelegae
+// MARK: - UISearchBarDelegate
 extension PeopleViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     print(searchText)
   }
 }
-
 // MARK: - SwiftUI
-
 import SwiftUI
 
 struct PeopleControllerProvider: PreviewProvider {
   static var previews: some View {
     ContainerView().edgesIgnoringSafeArea(.all)
   }
-  
   struct ContainerView: UIViewControllerRepresentable {
-    
     let tabBarVC = MainTabBarController()
-    
     func makeUIViewController(context: Context) -> some UIViewController {
       return tabBarVC
     }
-    
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     }
   }

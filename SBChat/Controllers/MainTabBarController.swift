@@ -24,7 +24,9 @@ class MainTabBarController: UITabBarController {
   }
   
   // MARK: - Module functions
-  private func generateNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+  private func generateNavigationController(rootViewController: UIViewController,
+                                            title: String,
+                                            image: UIImage) -> UIViewController {
     let navigationVC = UINavigationController(rootViewController: rootViewController)
     navigationVC.tabBarItem.title = title
     navigationVC.tabBarItem.image = image

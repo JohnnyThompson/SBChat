@@ -1,0 +1,6 @@
+framework module Pods_SBChat {
+  umbrella header "Pods-SBChat-umbrella.h"
+
+  export *
+  module * { export * }
+}

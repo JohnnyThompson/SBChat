@@ -36,5 +36,4 @@ class SectionHeader: UICollectionReusableView {
         title.font = font
         title.text = text
     }
-    
 }
