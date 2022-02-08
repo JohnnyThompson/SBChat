@@ -22,7 +22,6 @@ class MainTabBarController: UITabBarController {
       generateNavigationController(rootViewController: listViewController, title: "Conversation", image: convImage)
     ]
   }
-  
   // MARK: - Module functions
   private func generateNavigationController(rootViewController: UIViewController,
                                             title: String,

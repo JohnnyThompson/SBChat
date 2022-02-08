@@ -13,7 +13,7 @@ class UserCell: UICollectionViewCell, SelfConfiguringCell {
   let userImageView = UIImageView()
   let userName = UILabel(text: "text", font: .laoSangamMN20())
   let containerView = UIView()
-  
+
   // MARK: - Initialization
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -32,7 +32,7 @@ class UserCell: UICollectionViewCell, SelfConfiguringCell {
     self.containerView.layer.cornerRadius = 4
     self.containerView.clipsToBounds = true
   }
-  
+
   // MARK: - Public functions
   func configure<U: Hashable>(with value: U) {
     guard let user = value as? MUser else {
@@ -49,11 +49,9 @@ extension UserCell {
     userImageView.translatesAutoresizingMaskIntoConstraints = false
     userName.translatesAutoresizingMaskIntoConstraints = false
     containerView.translatesAutoresizingMaskIntoConstraints = false
-    
     addSubview(containerView)
     containerView.addSubview(userImageView)
     containerView.addSubview(userName)
-    
     NSLayoutConstraint.activate([
       containerView.topAnchor.constraint(equalTo: self.topAnchor),
       containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),

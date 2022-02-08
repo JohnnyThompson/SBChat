@@ -8,7 +8,6 @@
 import UIKit
 
 class AuthViewController: UIViewController {
-  
   // MARK: - Properties
   let logoImageView = UIImageView(
     image: #imageLiteral(resourceName: "Logo"),
@@ -33,7 +32,6 @@ class AuthViewController: UIViewController {
     titleColor: .buttonRed(),
     backgroundColor: .white,
     isShadow: true)
-  
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()

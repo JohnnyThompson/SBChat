@@ -21,7 +21,7 @@ class SetupProfileViewController: UIViewController {
     titleColor: .white,
     backgroundColor: .buttonDark())
   let sexSegmentedControl = UISegmentedControl(first: "Male", second: "Female")
-  
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()

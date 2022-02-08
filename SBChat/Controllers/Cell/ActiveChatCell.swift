@@ -7,16 +7,13 @@
 
 import UIKit
 
-
 class ActiveChatCell: UICollectionViewCell, SelfConfiguringCell {
   // MARK: - Properties
   static var reuseID: String = "ActiveChatCell"
-  
   let friendImageView = UIImageView()
   let friendName = UILabel(text: "User name", font: .laoSangamMN20())
   let lastMessage = UILabel(text: "How are u?", font: .laoSangamMN18())
-  let gradientView = GradientView(from: .topTrailing, to: .bottomLeading, startColor: #colorLiteral(red: 0.7882352941, green: 0.631372549, blue: 0.9411764706, alpha: 1), endColor: #colorLiteral(red: 0.4784313725, green: 0.6980392157, blue: 0.9215686275, alpha: 1))
-  
+  let gradientView = GradientView(from: .topTrailing, toThe: .bottomLeading, startColor: #colorLiteral(red: 0.7882352941, green: 0.631372549, blue: 0.9411764706, alpha: 1), endColor: #colorLiteral(red: 0.4784313725, green: 0.6980392157, blue: 0.9215686275, alpha: 1))
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupConstrains()
@@ -24,11 +21,9 @@ class ActiveChatCell: UICollectionViewCell, SelfConfiguringCell {
     self.layer.cornerRadius = 4
     self.clipsToBounds = true
   }
-  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
   func configure<U: Hashable>(with value: U) {
     guard let value = value as? MChat else {
       return

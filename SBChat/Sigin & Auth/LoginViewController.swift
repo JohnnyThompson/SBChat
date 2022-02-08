@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-  
+
   // MARK: - Properties
   let welcomeLabel = UILabel(text: "Welcome Back!", font: .avenir26())
   let loginWithLabel = UILabel(text: "Login with")

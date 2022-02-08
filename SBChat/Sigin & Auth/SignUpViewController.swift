@@ -8,7 +8,6 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-  
   // MARK: - Properties
   let welcomeLabel = UILabel(text: "Good to see you", font: .avenir26())
   let emailLabel = UILabel(text: "Email")
