@@ -7,4 +7,6 @@ target 'SBChat' do
 
   # Pods for SBChat
   pod 'SwiftLint'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
 end

@@ -27,7 +27,7 @@ class PeopleViewController: UIViewController {
     setupSearchBar()
     setupCollectionView()
     createDataSource()
-    reloadData()
+    reloadData(with: nil)
   }
   // MARK: - Module functions
   private func setupCollectionView() {
@@ -52,10 +52,13 @@ class PeopleViewController: UIViewController {
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.delegate = self
   }
-  private func reloadData() {
+  private func reloadData(with searchText: String?) {
+    let filtered = users.filter { user in
+      user.contains(filter: searchText)
+    }
     var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
     snapshot.appendSections([.users])
-    snapshot.appendItems(users, toSection: .users)
+    snapshot.appendItems(filtered, toSection: .users)
     dataSource?.apply(snapshot, animatingDifferences: true)
   }
 }
@@ -140,10 +143,10 @@ extension PeopleViewController {
           for: indexPath
         ) as? SectionHeader
       else {
-        fatalError("Can not create new sectioon Header")
+        fatalError("Can not create new section Header")
       }
       guard let section = Section(rawValue: indexPath.section) else {
-        fatalError("Unknow section kind")
+        fatalError("Unknown section kind")
       }
       let items = self.dataSource.snapshot().itemIdentifiers(inSection: .users)
       sectionHeader.configurate(text: section.description(usersCount: items.count),
@@ -156,6 +159,7 @@ extension PeopleViewController {
 // MARK: - UISearchBarDelegate
 extension PeopleViewController: UISearchBarDelegate {
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    reloadData(with: searchText)
     print(searchText)
   }
 }

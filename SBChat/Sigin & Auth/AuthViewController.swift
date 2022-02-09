@@ -9,35 +9,41 @@ import UIKit
 
 class AuthViewController: UIViewController {
   // MARK: - Properties
-  let logoImageView = UIImageView(
-    image: #imageLiteral(resourceName: "Logo"),
-    contentMode: .scaleAspectFit)
-  let googleLabel = UILabel(
-    text: "Get started wit")
-  let emailLabel = UILabel(
-    text: "Or sign up with")
-  let alreadyOnboardLabel = UILabel(
-    text: "Already onboard?")
-  let googleButton = UIButton(
-    title: "Google",
-    titleColor: .black,
-    backgroundColor: .white,
-    isShadow: true)
-  let emailButton = UIButton(
-    title: "Email",
-    titleColor: .white,
-    backgroundColor: .buttonDark())
-  let loginButton = UIButton(
-    title: "Login",
-    titleColor: .buttonRed(),
-    backgroundColor: .white,
-    isShadow: true)
+  let logoImageView = UIImageView(image: #imageLiteral(resourceName: "Logo"),
+                                  contentMode: .scaleAspectFit)
+  let googleLabel = UILabel(text: "Get started wit")
+  let emailLabel = UILabel(text: "Or sign up with")
+  let alreadyOnboardLabel = UILabel(text: "Already onboard?")
+  let googleButton = UIButton(title: "Google",
+                              titleColor: .black,
+                              backgroundColor: .white,
+                              isShadow: true)
+  let emailButton = UIButton(title: "Email",
+                             titleColor: .white,
+                             backgroundColor: .buttonDark())
+  let loginButton = UIButton(title: "Login",
+                             titleColor: .buttonRed(),
+                             backgroundColor: .white,
+                             isShadow: true)
+  let signUpVC = SignUpViewController()
+  let loginVC = LoginViewController()
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     setupConstraints()
     googleButton.costomizeGoogleButton()
+    emailButton.addTarget(self, action: #selector(emailButtonTapped), for: .touchUpInside)
+    loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+  }
+  // MARK: - Module functions
+  @objc private func emailButtonTapped() {
+    print(#function)
+    present(signUpVC, animated: true)
+  }
+  @objc private func loginButtonTapped() {
+    print(#function)
+    present(loginVC, animated: true)
   }
 }
 

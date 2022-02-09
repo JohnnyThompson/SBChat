@@ -18,15 +18,13 @@ class LoginViewController: UIViewController {
   let needAnAccountLabel = UILabel(text: "Need an account?")
   let emailTextField = OneLineTextField(font: .avenir20())
   let passwordTextField = OneLineTextField(font: .avenir20())
-  let googleButton = UIButton(
-    title: "Google",
-    titleColor: .black,
-    backgroundColor: .white,
-    isShadow: true)
-  let loginButton = UIButton(
-    title: "Login",
-    titleColor: .white,
-    backgroundColor: .buttonDark())
+  let googleButton = UIButton(title: "Google",
+                              titleColor: .black,
+                              backgroundColor: .white,
+                              isShadow: true)
+  let loginButton = UIButton(title: "Login",
+                             titleColor: .white,
+                             backgroundColor: .buttonDark())
   let signUpButton: UIButton = {
     let button = UIButton(type: .system)
     button.setTitle("Sign up", for: .normal)
@@ -34,13 +32,26 @@ class LoginViewController: UIViewController {
     button.titleLabel?.font = .avenir20()
     return button
   }()
-
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     setupConstraints()
     googleButton.costomizeGoogleButton()
+    loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+  }
+  // MARK: - Module functions
+  @objc private func loginButtonTapped() {
+    print(#function)
+    AuthService.shared.login(email: emailTextField.text!, password: passwordTextField.text!) { result in
+      switch result {
+      case .success(let user):
+        self.showAlert(with: "Success!", and: "Auth succes")
+        print(user.email!)
+      case .failure(let error):
+        self.showAlert(with: "Failure!", and: error.localizedDescription)
+      }
+    }
   }
 }
 
