@@ -46,7 +46,7 @@ class LoginViewController: UIViewController {
     AuthService.shared.login(email: emailTextField.text!, password: passwordTextField.text!) { result in
       switch result {
       case .success(let user):
-        self.showAlert(with: "Success!", and: "Auth succes")
+        self.showAlert(with: "Success!", and: "Auth success")
         print(user.email!)
       case .failure(let error):
         self.showAlert(with: "Failure!", and: error.localizedDescription)

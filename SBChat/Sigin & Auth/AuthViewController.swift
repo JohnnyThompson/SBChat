@@ -60,12 +60,13 @@ extension AuthViewController {
     view.addSubview(stackView)
     NSLayoutConstraint.activate([
       logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160)
+      logoImageView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
     ])
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 80),
       stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+      stackView.bottomAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -140)
     ])
   }
 }
@@ -74,7 +75,7 @@ extension AuthViewController {
 import SwiftUI
 struct AuthViewControllerProvider: PreviewProvider {
   static var previews: some View {
-    ContainerView().edgesIgnoringSafeArea(.all)
+    ContainerView().edgesIgnoringSafeArea(.all).previewInterfaceOrientation(.portrait)
   }
   struct ContainerView: UIViewControllerRepresentable {
     let viewController = AuthViewController()
