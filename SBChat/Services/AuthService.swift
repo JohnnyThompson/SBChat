@@ -16,7 +16,13 @@ class AuthService {
   func login(email: String?,
              password: String?,
              completion: @escaping (Result<User, Error>) -> Void) {
-    auth.signIn(withEmail: email!, password: password!) { result, error in
+    guard let email = email,
+          let password = password else {
+            completion(.failure(AuthError.notField))
+            return
+          }
+
+    auth.signIn(withEmail: email, password: password) { result, error in
       guard let result = result else {
         completion(.failure(error!))
         return
@@ -26,8 +32,20 @@ class AuthService {
   }
   func register(email: String?,
                 password: String?,
-                configuration: String?,
+                confirmPassword: String?,
                 completion: @escaping (Result<User, Error>) -> Void) {
+    guard Validators.isFilled(email: email, password: password, confirmPassword: confirmPassword) else {
+      completion(.failure(AuthError.notField))
+      return
+    }
+    guard password! == confirmPassword! else {
+      completion(.failure(AuthError.passwordNotMatched))
+      return
+    }
+    guard Validators.isSimpleEmail(email!) else {
+      completion(.failure(AuthError.invalidEmail))
+      return
+    }
     auth.createUser(withEmail: email!, password: password!) { result, error in
       guard let result = result else {
         completion(.failure(error!))

@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController {
     print(#function)
     AuthService.shared.register(email: emailTextField.text,
                                 password: passwordTextField.text,
-                                configuration: confirmPasswordTextField.text) { result in
+                                confirmPassword: confirmPasswordTextField.text) { result in
       switch result {
       case .success(let user):
         self.showAlert(with: "Success!", and: "You will be registered")
