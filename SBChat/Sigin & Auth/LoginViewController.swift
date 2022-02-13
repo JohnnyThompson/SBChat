@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol AuthNavigationDelegate: AnyObject {
+  func toLoginVC()
+  func toSignUpVC()
+}
+
 class LoginViewController: UIViewController {
 
   // MARK: - Properties
@@ -32,6 +37,7 @@ class LoginViewController: UIViewController {
     button.titleLabel?.font = .avenir20()
     return button
   }()
+  weak var delegate: AuthNavigationDelegate?
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,6 +45,7 @@ class LoginViewController: UIViewController {
     setupConstraints()
     googleButton.costomizeGoogleButton()
     loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+    signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
   }
   // MARK: - Module functions
   @objc private func loginButtonTapped() {
@@ -51,6 +58,11 @@ class LoginViewController: UIViewController {
       case .failure(let error):
         self.showAlert(with: "Failure!", and: error.localizedDescription)
       }
+    }
+  }
+  @objc private func signUpButtonTapped() {
+    dismiss(animated: true) { [unowned self] in
+      delegate?.toSignUpVC()
     }
   }
 }

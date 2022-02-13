@@ -30,6 +30,8 @@ class AuthViewController: UIViewController {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    signUpVC.delegate = self
+    loginVC.delegate = self
     view.backgroundColor = .white
     setupConstraints()
     googleButton.costomizeGoogleButton()
@@ -46,7 +48,6 @@ class AuthViewController: UIViewController {
     present(loginVC, animated: true)
   }
 }
-
 // MARK: - SetupConstraints
 extension AuthViewController {
   private func setupConstraints() {
@@ -70,7 +71,15 @@ extension AuthViewController {
     ])
   }
 }
-
+// MARK: - AuthNavigationDelegate
+extension AuthViewController: AuthNavigationDelegate {
+  func toLoginVC() {
+    present(loginVC, animated: true)
+  }
+  func toSignUpVC() {
+    present(signUpVC, animated: true)
+  }
+}
 // MARK: - SwiftUI
 import SwiftUI
 struct AuthViewControllerProvider: PreviewProvider {
