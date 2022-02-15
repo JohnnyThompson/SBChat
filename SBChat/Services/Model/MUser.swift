@@ -9,8 +9,20 @@ import Foundation
 
 struct MUser: Hashable, Decodable {
   var username: String
+  var id: String
+  var email: String
+  var description: String
+  var sex: String
   var avatarStringURL: String
-  var id: Int
+  var representation: [String: Any] {
+    var rep = ["username" : username]
+    rep["sex"] = sex
+    rep["uid"] = id
+    rep["email"] = email
+    rep["description"] = description
+    rep["avatarStringURL"] = avatarStringURL
+    return rep
+  }
   static func == (lhs: MUser, rhs: MUser) -> Bool {
     return lhs.id == rhs.id
   }
