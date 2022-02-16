@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class AuthViewController: UIViewController {
   // MARK: - Properties
@@ -37,6 +39,7 @@ class AuthViewController: UIViewController {
     googleButton.costomizeGoogleButton()
     emailButton.addTarget(self, action: #selector(emailButtonTapped), for: .touchUpInside)
     loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+    googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
   }
   // MARK: - Module functions
   @objc private func emailButtonTapped() {
@@ -46,6 +49,10 @@ class AuthViewController: UIViewController {
   @objc private func loginButtonTapped() {
     print(#function)
     present(loginVC, animated: true)
+  }
+  @objc private func googleButtonTapped() {
+    print(#function)
+    AuthService.shared.googleLogin(presenting: self)
   }
 }
 // MARK: - SetupConstraints
@@ -71,6 +78,7 @@ extension AuthViewController {
     ])
   }
 }
+
 // MARK: - AuthNavigationDelegate
 extension AuthViewController: AuthNavigationDelegate {
   func toLoginVC() {

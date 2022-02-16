@@ -6,16 +6,30 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseFirestore
 
 class FirestoreService {
   static let shared = FirestoreService()
-  let db  = Firestore.firestore()
+  let dataBase  = Firestore.firestore()
   private var userRef: CollectionReference {
-    return db.collection("users")
+    return dataBase.collection("users")
   }
   private init() { }
-
+  func getUserData(user: User, completion: @escaping (Result<MUser, Error>) -> Void) {
+    let docRef = userRef.document(user.uid)
+    docRef.getDocument { document, _ in
+      if let document = document, document.exists {
+        guard let mUser = MUser(document: document) else {
+          completion(.failure(UserError.cannotUnwrapToMUser))
+          return
+        }
+        completion(.success(mUser))
+      } else {
+        completion(.failure(UserError.cannotGetUserInfo))
+      }
+    }
+  }
   func saveProfileWith(id: String,
                        email: String,
                        username: String?,

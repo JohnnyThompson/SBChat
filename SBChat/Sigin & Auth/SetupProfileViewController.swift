@@ -27,6 +27,10 @@ class SetupProfileViewController: UIViewController {
   init(currentUser: User) {
     self.currentUser = currentUser
     super.init(nibName: nil, bundle: nil)
+    if let username = currentUser.displayName {
+      fullNameTextField.text = username
+    }
+    // TODOs set google image
   }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -44,10 +48,16 @@ class SetupProfileViewController: UIViewController {
                                             username: fullNameTextField.text,
                                             avatarImageString: "nil",
                                             description: aboutMeTextField.text,
-                                            sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)) { result in
+                                            sex: sexSegmentedControl.titleForSegment(
+                                              at: sexSegmentedControl.selectedSegmentIndex)
+    ) { result in
       switch result {
       case .success(let mUser):
-        self.showAlert(with: "Success!", and: "Auth success")
+        self.showAlert(with: "Success!", and: "Auth success") {
+          let mainTabBar = MainTabBarController(currentUser: mUser)
+          mainTabBar.modalPresentationStyle = .fullScreen
+          self.present(mainTabBar, animated: true, completion: nil)
+        }
         print(mUser)
       case .failure(let error):
         self.showAlert(with: "Failure!", and: error.localizedDescription)

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
@@ -41,14 +43,25 @@ class LoginViewController: UIViewController {
     googleButton.costomizeGoogleButton()
     loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+    googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
   }
   // MARK: - Module functions
   @objc private func loginButtonTapped() {
-    print(#function)
     AuthService.shared.login(email: emailTextField.text!, password: passwordTextField.text!) { result in
       switch result {
       case .success(let user):
-        self.showAlert(with: "Success!", and: "Auth success")
+        self.showAlert(with: "Success!", and: "Auth success") {
+          FirestoreService.shared.getUserData(user: user) { result in
+            switch result {
+            case .success(let mUser):
+              let mainTabBar = MainTabBarController(currentUser: mUser)
+              mainTabBar.modalPresentationStyle = .fullScreen
+              self.present(mainTabBar, animated: true)
+            case .failure:
+              self.present(SetupProfileViewController(currentUser: user), animated: true)
+            }
+          }
+        }
         print(user.email!)
       case .failure(let error):
         self.showAlert(with: "Failure!", and: error.localizedDescription)
@@ -59,6 +72,9 @@ class LoginViewController: UIViewController {
     dismiss(animated: true) { [unowned self] in
       delegate?.toSignUpVC()
     }
+  }
+  @objc private func googleButtonTapped() {
+    AuthService.shared.googleLogin(presenting: self)
   }
 }
 
