@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Firebase
-import GoogleSignIn
 
 class AuthViewController: UIViewController {
   // MARK: - Properties
