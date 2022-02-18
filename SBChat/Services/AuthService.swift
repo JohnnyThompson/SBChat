@@ -22,7 +22,6 @@ class AuthService {
             completion(.failure(AuthError.notField))
             return
           }
-
     auth.signIn(withEmail: email, password: password) { result, error in
       guard let result = result else {
         completion(.failure(error!))

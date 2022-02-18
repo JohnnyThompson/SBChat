@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     AuthService.shared.login(email: emailTextField.text!, password: passwordTextField.text!) { result in
       switch result {
       case .success(let user):
-        self.showAlert(with: "Success!", and: "Auth success") {
+        self.showAlert(with: "Успех!", and: "Авторизация выполнена") {
           FirestoreService.shared.getUserData(user: user) { result in
             switch result {
             case .success(let mUser):

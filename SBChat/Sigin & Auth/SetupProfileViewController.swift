@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class SetupProfileViewController: UIViewController {
   // MARK: - Properties
-  let fillImageView = AddPhotoView()
+  let fullImageView = AddPhotoView()
   let setupProfileLabel = UILabel(text: "Set up profile", font: .avenir26())
   let fullNameLabel = UILabel(text: "Full Name")
   let aboutMeLabel = UILabel(text: "About Me")
@@ -41,12 +41,13 @@ class SetupProfileViewController: UIViewController {
     view.backgroundColor = .white
     setupConstrains()
     goToChatsButton.addTarget(self, action: #selector(goToChatsButtonTapped), for: .touchUpInside)
+    fullImageView.plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
   }
   @objc private func goToChatsButtonTapped() {
     FirestoreService.shared.saveProfileWith(id: currentUser.uid,
                                             email: currentUser.email!,
                                             username: fullNameTextField.text,
-                                            avatarImageString: "nil",
+                                            avatarImage: fullImageView.circleImageView.image,
                                             description: aboutMeTextField.text,
                                             sex: sexSegmentedControl.titleForSegment(
                                               at: sexSegmentedControl.selectedSegmentIndex)
@@ -63,6 +64,11 @@ class SetupProfileViewController: UIViewController {
         self.showAlert(with: "Failure!", and: error.localizedDescription)
       }
     }
+  }
+  @objc private func plusButtonTapped() {
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.delegate = self
+    present(imagePickerController, animated: true)
   }
 }
 
@@ -86,25 +92,36 @@ extension SetupProfileViewController {
                                 axis: .vertical,
                                 spacing: 40)
     setupProfileLabel.translatesAutoresizingMaskIntoConstraints = false
-    fillImageView.translatesAutoresizingMaskIntoConstraints = false
+    fullImageView.translatesAutoresizingMaskIntoConstraints = false
     stackView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(setupProfileLabel)
-    view.addSubview(fillImageView)
+    view.addSubview(fullImageView)
     view.addSubview(stackView)
     NSLayoutConstraint.activate([
       setupProfileLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
       setupProfileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
     NSLayoutConstraint.activate([
-      fillImageView.topAnchor.constraint(equalTo: setupProfileLabel.bottomAnchor,
+      fullImageView.topAnchor.constraint(equalTo: setupProfileLabel.bottomAnchor,
                                          constant: 40),
-      fillImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+      fullImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
     NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: fillImageView.bottomAnchor, constant: 40),
+      stackView.topAnchor.constraint(equalTo: fullImageView.bottomAnchor, constant: 40),
       stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
       stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
     ])
+  }
+}
+// MARK: -
+extension SetupProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    picker.dismiss(animated: true)
+    guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+      return
+    }
+    fullImageView.circleImageView.image = image
   }
 }
 

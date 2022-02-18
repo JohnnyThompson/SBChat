@@ -19,7 +19,7 @@ class AddPhotoView: UIView {
     imageView.layer.borderWidth = 1
     return imageView
   }()
-  let plussButton: UIButton = {
+  let plusButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
     let myImage = UIImage(systemName: "plus.circle.fill")
@@ -31,7 +31,7 @@ class AddPhotoView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(circleImageView)
-    addSubview(plussButton)
+    addSubview(plusButton)
     setupConstrains()
   }
   required init?(coder: NSCoder) {
@@ -46,13 +46,13 @@ class AddPhotoView: UIView {
       circleImageView.widthAnchor.constraint(equalToConstant: 100)
     ])
     NSLayoutConstraint.activate([
-      plussButton.heightAnchor.constraint(equalToConstant: 30),
-      plussButton.widthAnchor.constraint(equalToConstant: 30),
-      plussButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-      plussButton.leadingAnchor.constraint(equalTo: circleImageView.trailingAnchor, constant: 16)
+      plusButton.heightAnchor.constraint(equalToConstant: 30),
+      plusButton.widthAnchor.constraint(equalToConstant: 30),
+      plusButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+      plusButton.leadingAnchor.constraint(equalTo: circleImageView.trailingAnchor, constant: 16)
     ])
     self.bottomAnchor.constraint(equalTo: circleImageView.bottomAnchor).isActive = true
-    self.trailingAnchor.constraint(equalTo: plussButton.trailingAnchor).isActive = true
+    self.trailingAnchor.constraint(equalTo: plusButton.trailingAnchor).isActive = true
   }
   override func layoutSubviews() {
     super.layoutSubviews()

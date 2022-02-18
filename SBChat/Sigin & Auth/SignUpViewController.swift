@@ -44,12 +44,12 @@ class SignUpViewController: UIViewController {
                                 confirmPassword: confirmPasswordTextField.text) { result in
       switch result {
       case .success(let user):
-        self.showAlert(with: "Success!", and: "You will be registered") {
+        self.showAlert(with: "Успех", and: "Осталось настроить свой профиль") {
           self.present(SetupProfileViewController(currentUser: user), animated: true)
         }
         print(user.email!)
       case .failure(let error):
-        self.showAlert(with: "Failure!", and: error.localizedDescription)
+        self.showAlert(with: "Ошибка", and: error.localizedDescription)
       }
     }
   }

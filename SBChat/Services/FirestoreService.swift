@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import UIKit
 
 class FirestoreService {
   static let shared = FirestoreService()
@@ -33,7 +34,7 @@ class FirestoreService {
   func saveProfileWith(id: String,
                        email: String,
                        username: String?,
-                       avatarImageString: String?,
+                       avatarImage: UIImage?,
                        description: String?,
                        sex: String?,
                        completion: @escaping (Result<MUser, Error>) -> Void) {
@@ -41,18 +42,30 @@ class FirestoreService {
       completion(.failure(UserError.notField))
       return
     }
-    let mUser = MUser(username: username!,
+    guard avatarImage != #imageLiteral(resourceName: "avatar") else {
+      completion(.failure(UserError.photoNotExist))
+      return
+    }
+    var mUser = MUser(username: username!,
                       id: id,
                       email: email,
                       description: description!,
                       sex: sex!,
                       avatarStringURL: "not exist")
-    self.userRef.document(mUser.id).setData(mUser.representation) { error in
-      if let error = error {
+    StorageService.shared.upload(photo: avatarImage!) { result in
+      switch result {
+      case .success(let url):
+        mUser.avatarStringURL = url.absoluteString
+        self.userRef.document(mUser.id).setData(mUser.representation) { error in
+          if let error = error {
+            completion(.failure(error))
+          } else {
+            completion(.success(mUser))
+          }
+        }
+      case .failure(let error):
         completion(.failure(error))
-      } else {
-        completion(.success(mUser))
       }
-    }
-  }
+    } // StorageService
+  } // saveProfileWith
 }
