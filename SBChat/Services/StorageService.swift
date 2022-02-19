@@ -20,42 +20,24 @@ class StorageService {
     return Auth.auth().currentUser!.uid
   }
   func upload(photo: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
-//    guard let scaledImage = photo.scaledToSafeUploadSize,
-//          let imageData = scaledImage.jpegData(compressionQuality: 0.4) else {
-//      return
-//    }
-//    let metadata = StorageMetadata()
-//    metadata.contentType = "image/jpeg"
-//    avatarRef.child(currentUserId).putData(imageData, metadata: metadata) { metadata, error in
-//      guard let _ = metadata else {
-//        completion(.failure(error!))
-//        return
-//      }
-//      self.avatarRef.child(self.currentUserId).downloadURL { url, error in
-//        guard let downloadURL = url else {
-//          completion(.failure(error!))
-//          return
-//        }
-//        completion(.success(downloadURL))
-//      }
-//    }
-    guard let scaledImage = photo.scaledToSafeUploadSize, let imageData = scaledImage.jpegData(compressionQuality: 0.4) else { return }
-
+    guard let scaledImage = photo.scaledToSafeUploadSize,
+          let imageData = scaledImage.jpegData(compressionQuality: 0.4) else {
+      return
+    }
     let metadata = StorageMetadata()
     metadata.contentType = "image/jpeg"
-
-    avatarsRef.child(currentUserId).putData(imageData, metadata: metadata) { (metadata, error) in
-        guard let _ = metadata else {
-            completion(.failure(error!))
-            return
+    avatarsRef.child(currentUserId).putData(imageData, metadata: metadata) { metadata, error in
+      guard metadata != nil else {
+        completion(.failure(error!))
+        return
+      }
+      self.avatarsRef.child(self.currentUserId).downloadURL { url, error in
+        guard let downloadURL = url else {
+          completion(.failure(error!))
+          return
         }
-        self.avatarsRef.child(self.currentUserId).downloadURL { (url, error) in
-            guard let downloadURL = url else {
-                completion(.failure(error!))
-                return
-            }
-            completion(.success(downloadURL))
-        }
+        completion(.success(downloadURL))
+      }
     }
   }
 }

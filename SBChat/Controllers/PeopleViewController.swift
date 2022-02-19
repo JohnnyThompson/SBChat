@@ -7,10 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class PeopleViewController: UIViewController {
   // MARK: - Properties
-  //  let users = Bundle.main.decode([MUser].self, from: "users.json")
+  var users = [MUser]()
+  private var usersListener: ListenerRegistration?
   var collectionView: UICollectionView!
   var dataSource: UICollectionViewDiffableDataSource<Section, MUser>!
   enum Section: Int, CaseIterable {
@@ -32,23 +34,34 @@ class PeopleViewController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  deinit {
+    usersListener?.remove()
+  }
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupSearchBar()
     setupCollectionView()
     createDataSource()
-    reloadData(with: nil)
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out",
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(signOut))
+    usersListener = ListenerService.shared.usersObserve(users: users, completion: { result in
+      switch result {
+      case .success(let users):
+        self.users = users
+        self.reloadData(with: nil)
+      case .failure(let error):
+        self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+      }
+    })
   }
   // MARK: - Module functions
   @objc private func signOut() {
     let alertController = UIAlertController(title: nil,
-                               message: "Are you sure you want to sign out?",
-                               preferredStyle: .alert)
+                                            message: "Are you sure you want to sign out?",
+                                            preferredStyle: .alert)
     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
       do {
@@ -83,12 +96,12 @@ class PeopleViewController: UIViewController {
     searchController.searchBar.delegate = self
   }
   private func reloadData(with searchText: String?) {
-    //    let filtered = users.filter { user in
-    //      user.contains(filter: searchText)
-    //    }
+    let filtered = users.filter { user in
+      user.contains(filter: searchText)
+    }
     var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
     snapshot.appendSections([.users])
-    //    snapshot.appendItems(filtered, toSection: .users)
+    snapshot.appendItems(filtered, toSection: .users)
     dataSource?.apply(snapshot, animatingDifferences: true)
   }
 }
