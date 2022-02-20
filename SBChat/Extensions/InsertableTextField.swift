@@ -54,19 +54,3 @@ class InsertableTextField: UITextField {
     return bounds.insetBy(dx: 36, dy: 0)
   }
 }
-// MARK: - SwiftUI
-import SwiftUI
-
-struct InsertableTextFieldProvider: PreviewProvider {
-  static var previews: some View {
-    ContainerView().edgesIgnoringSafeArea(.all)
-  }
-  struct ContainerView: UIViewControllerRepresentable {
-    let tabBarVC = ProfileViewController()
-    func makeUIViewController(context: Context) -> some UIViewController {
-      return tabBarVC
-    }
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-  }
-}

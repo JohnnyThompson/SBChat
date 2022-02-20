@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileViewController: UIViewController {
   // MARK: - Properties
@@ -15,6 +16,7 @@ class ProfileViewController: UIViewController {
   let aboutMeLabel = UILabel(text: "You have opportunity to chat with best man in the world!",
                            font: .systemFont(ofSize: 16, weight: .light))
   let myTextField = InsertableTextField()
+  private let user: MUser
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,6 +24,18 @@ class ProfileViewController: UIViewController {
     customisingElements()
     setupConstraints()
   }
+  // MARK: - Initialization
+  init(user: MUser) {
+    self.user = user
+    self.nameLabel.text = user.username
+    self.aboutMeLabel.text = user.description
+    self.imageView.sd_setImage(with: URL(string: user.avatarStringURL), completed: nil)
+    super.init(nibName: nil, bundle: nil)
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  // MARK: - Module functions
   private func customisingElements() {
     containerView.translatesAutoresizingMaskIntoConstraints = false
     imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +50,12 @@ class ProfileViewController: UIViewController {
     }
   }
   @objc private func sendMassage() {
-    print(#function)
+    guard let message = myTextField.text, message != "" else {
+      return
+    }
+    self.dismiss(animated: true) {
+      UIApplication.getTopViewController()?.showAlert(with: "Test", and: "111")
+    }
   }
 }
 // MARK: - Setup constraints
@@ -75,21 +94,5 @@ extension ProfileViewController {
       myTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
       myTextField.heightAnchor.constraint(equalToConstant: 48)
     ])
-  }
-}
-// MARK: - SwiftUI
-import SwiftUI
-
-struct ProfileViewControllerProvider: PreviewProvider {
-  static var previews: some View {
-    ContainerView().edgesIgnoringSafeArea(.all)
-  }
-  struct ContainerView: UIViewControllerRepresentable {
-    let tabBarVC = ProfileViewController()
-    func makeUIViewController(context: Context) -> some UIViewController {
-      return tabBarVC
-    }
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
   }
 }

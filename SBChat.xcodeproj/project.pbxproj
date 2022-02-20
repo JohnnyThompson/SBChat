@@ -49,6 +49,7 @@
 		26A6B8F027C0016100D49C76 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6B8EF27C0016100D49C76 /* UIImage + Extension.swift */; };
 		26A6B8F227C09E1600D49C76 /* ListenerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6B8F127C09E1600D49C76 /* ListenerService.swift */; };
 		26A6B8F527C0A37700D49C76 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 26A6B8F427C0A37700D49C76 /* SDWebImage */; };
+		26A6B8F727C2A9F800D49C76 /* UIAplication + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6B8F627C2A9F800D49C76 /* UIAplication + Extension.swift */; };
 		26DCC6A227BC15A00045532E /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DCC6A127BC15A00045532E /* FirestoreService.swift */; };
 		26DCC6A427BC15BE0045532E /* AuthNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DCC6A327BC15BE0045532E /* AuthNavigationDelegate.swift */; };
 		26DCC6A627BC17ED0045532E /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DCC6A527BC17ED0045532E /* UserError.swift */; };
@@ -103,6 +104,7 @@
 		26A6B8ED27BFFCD100D49C76 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		26A6B8EF27C0016100D49C76 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		26A6B8F127C09E1600D49C76 /* ListenerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerService.swift; sourceTree = "<group>"; };
+		26A6B8F627C2A9F800D49C76 /* UIAplication + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAplication + Extension.swift"; sourceTree = "<group>"; };
 		26DCC6A127BC15A00045532E /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		26DCC6A327BC15BE0045532E /* AuthNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationDelegate.swift; sourceTree = "<group>"; };
 		26DCC6A527BC17ED0045532E /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				262264AB275A85FE00BBE148 /* UIStackView + Extension.swift */,
 				26F65C4927B02CA50048196F /* UIViewController + Extension.swift */,
 				26A6B8EF27C0016100D49C76 /* UIImage + Extension.swift */,
+				26A6B8F627C2A9F800D49C76 /* UIAplication + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				2652AF2E275D276E00A7C0C2 /* MainTabBarController.swift in Sources */,
 				262FE7E227B6CE8C004BA087 /* AuthError.swift in Sources */,
 				262264AE275A9A0300BBE148 /* SignUpViewController.swift in Sources */,
+				26A6B8F727C2A9F800D49C76 /* UIAplication + Extension.swift in Sources */,
 				26DDFD33278202D5009A7940 /* MUser.swift in Sources */,
 				262FE7E027B6BBEE004BA087 /* Validators.swift in Sources */,
 				2646BABF276540D000D49AB7 /* ActiveChatCell.swift in Sources */,

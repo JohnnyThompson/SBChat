@@ -8,14 +8,14 @@
 import Foundation
 
 struct MChat: Hashable, Decodable {
-  var username: String
-  var userImageString: String
-  var lastMessage: String
-  var id: Int
+  var friendUsername: String
+  var friendUserImageString: String
+  var lastMessageContent: String
+  var friendID: String
   static func == (lhs: MChat, rhs: MChat) -> Bool {
-    return lhs.id == rhs.id
+    return lhs.friendID == rhs.friendID
   }
   func hash(into hasher: inout Hasher) {
-    hasher.combine(id)
+    hasher.combine(friendID)
   }
 }
