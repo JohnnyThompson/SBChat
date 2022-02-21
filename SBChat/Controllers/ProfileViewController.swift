@@ -54,7 +54,16 @@ class ProfileViewController: UIViewController {
       return
     }
     self.dismiss(animated: true) {
-      UIApplication.getTopViewController()?.showAlert(with: "Test", and: "111")
+      FirestoreService.shared.createWaitingChat(message: message, receiver: self.user) { result in
+        switch result {
+        case .success:
+          UIApplication.getTopViewController()?.showAlert(
+            with: "Success",
+            and: "Ваше сообщение для \(self.user.username) успешно отправлено")
+        case .failure(let error):
+          UIApplication.getTopViewController()?.showAlert(with: "Oshibka", and: error.localizedDescription)
+        }
+      }
     }
   }
 }

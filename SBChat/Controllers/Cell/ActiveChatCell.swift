@@ -28,9 +28,9 @@ class ActiveChatCell: UICollectionViewCell, SelfConfiguringCell {
     guard let value = value as? MChat else {
       return
     }
-    friendImageView.image = UIImage(named: value.userImageString)
-    friendName.text = value.username
-    lastMessage.text = value.lastMessage
+//    friendImageView.image = UIImage(named: value.userImageString)
+//    friendName.text = value.username
+//    lastMessage.text = value.lastMessage
   }
 }
 

@@ -9,8 +9,8 @@ import UIKit
 
 class ListViewController: UIViewController {
   // MARK: - Properties
-  let activeChats = Bundle.main.decode([MChat].self, from: "activeChats.json")
-  let waitingChats = Bundle.main.decode([MChat].self, from: "waitingChats.json")
+  let activeChats: [MChat] = []
+  let waitingChats: [MChat] = []
   var collectionView: UICollectionView!
   var dataSource: UICollectionViewDiffableDataSource<Section, MChat>?
   enum Section: Int, CaseIterable {

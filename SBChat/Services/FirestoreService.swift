@@ -77,13 +77,24 @@ class FirestoreService {
   ) {
     let reference = dataBase.collection(["users", receiver.id, "waitingChats"].joined(separator: "/"))
     let messageReference = reference.document(self.currentUser.id).collection("messages")
+    let message = MMessage(user: currentUser, content: message)
     let chat = MChat(
       friendUsername: currentUser.username,
-      friendUserImageString: currentUser.avatarStringURL,
-      lastMessageContent: message,
+      friendUserImageStringURL: currentUser.avatarStringURL,
+      lastMessageContent: message.content,
       friendID: currentUser.id
     )
-    reference.document(currentUser.id).setData([])
-
+    reference.document(currentUser.id).setData(chat.representation) { error in
+      if let error = error {
+        completion(.failure(error))
+      }
+      messageReference.addDocument(data: message.representation) { error in
+        if let error = error {
+          completion(.failure(error))
+          return
+        }
+        completion(.success(Void()))
+      }
+    }
   }
 }

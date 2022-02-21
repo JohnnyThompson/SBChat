@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 extension UIApplication {
-  class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+  class func getTopViewController(
+    base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+  ) -> UIViewController? {
     if let nav = base as? UINavigationController {
       return getTopViewController(base: nav.visibleViewController)
     } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {

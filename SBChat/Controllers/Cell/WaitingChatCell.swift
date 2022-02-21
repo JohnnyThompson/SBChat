@@ -28,7 +28,7 @@ class WaitingChatCell: UICollectionViewCell, SelfConfiguringCell {
     guard let value = value as? MChat else {
       return
     }
-    friendImageView.image = UIImage(named: value.userImageString)
+//    friendImageView.image = UIImage(named: value.userImageString)
   }
   // MARK: - Module function
   private func setupConstraints() {
