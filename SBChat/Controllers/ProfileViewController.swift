@@ -61,7 +61,7 @@ class ProfileViewController: UIViewController {
             with: "Success",
             and: "Ваше сообщение для \(self.user.username) успешно отправлено")
         case .failure(let error):
-          UIApplication.getTopViewController()?.showAlert(with: "Oshibka", and: error.localizedDescription)
+          UIApplication.getTopViewController()?.showAlert(with: "Ошибка!", and: error.localizedDescription)
         }
       }
     }

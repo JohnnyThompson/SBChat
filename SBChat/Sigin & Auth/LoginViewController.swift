@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
         }
         print(user.email!)
       case .failure(let error):
-        self.showAlert(with: "Failure!", and: error.localizedDescription)
+        self.showAlert(with: "Ошибка!", and: error.localizedDescription)
       }
     }
   }

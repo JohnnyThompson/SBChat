@@ -60,10 +60,10 @@ class PeopleViewController: UIViewController {
   // MARK: - Module functions
   @objc private func signOut() {
     let alertController = UIAlertController(title: nil,
-                                            message: "Are you sure you want to sign out?",
+                                            message: "Вы уверены что хотите выйти?",
                                             preferredStyle: .alert)
-    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
+    alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+    alertController.addAction(UIAlertAction(title: "Выйти", style: .destructive, handler: { _ in
       do {
         try Auth.auth().signOut()
         UIApplication.shared.keyWindow?.rootViewController = AuthViewController()
@@ -133,9 +133,11 @@ extension PeopleViewController {
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                            heightDimension: .fractionalWidth(0.6))
-    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                   subitem: item,
-                                                   count: 2)
+    let group = NSCollectionLayoutGroup.horizontal(
+      layoutSize: groupSize,
+      subitem: item,
+      count: 2
+    )
     group.interItemSpacing = .fixed(spacing)
     let section = NSCollectionLayoutSection(group: group)
     section.interGroupSpacing = spacing
