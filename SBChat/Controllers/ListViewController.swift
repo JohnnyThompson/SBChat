@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ListViewController: UIViewController {
   // MARK: - Properties
-  let activeChats: [MChat] = []
-  let waitingChats: [MChat] = []
+  var activeChats: [MChat] = []
+  var waitingChats: [MChat] = []
   var collectionView: UICollectionView!
   var dataSource: UICollectionViewDiffableDataSource<Section, MChat>?
   enum Section: Int, CaseIterable {
@@ -25,6 +26,7 @@ class ListViewController: UIViewController {
     }
   }
   private let currentUser: MUser
+  private var waitingChatsListener: ListenerRegistration?
   // MARK: - Initialization
   init(currentUser: MUser) {
     self.currentUser = currentUser
@@ -34,6 +36,9 @@ class ListViewController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  deinit {
+    waitingChatsListener?.remove()
+  }
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,6 +46,17 @@ class ListViewController: UIViewController {
     setupCollectionView()
     createDataSource()
     reloadData()
+    waitingChatsListener = ListenerService.shared.waitingChatsObserve(
+      chats: waitingChats,
+      completion: { result in
+        switch result {
+        case .success(let chats):
+          self.waitingChats = chats
+          self.reloadData()
+        case .failure(let error):
+          self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+        }
+    })
   }
 
   // MARK: - Module functions
@@ -87,7 +103,7 @@ extension ListViewController {
       case .activeChats:
         return self.createActiveChats()
       case .waitingChats:
-        return self.createWaitngChats()
+        return self.createWaitingChats()
       }
     }
     let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -95,7 +111,7 @@ extension ListViewController {
     layout.configuration = config
     return layout
   }
-  private func createWaitngChats() -> NSCollectionLayoutSection {
+  private func createWaitingChats() -> NSCollectionLayoutSection {
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                           heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -172,10 +188,10 @@ extension ListViewController {
           withReuseIdentifier: SectionHeader.reuseId,
           for: indexPath) as? SectionHeader
       else {
-        fatalError("Can not create new sectioon Header")
+        fatalError("Can not create new section Header")
       }
       guard let section = Section(rawValue: indexPath.section) else {
-        fatalError("Unknow section kind")
+        fatalError("Unknown section kind")
       }
       sectionHeader.configurate(text: section.description(), font: .laoSangamMN20(), textColor: #colorLiteral(red: 0.5725490196, green: 0.5725490196, blue: 0.5725490196, alpha: 1))
       return sectionHeader

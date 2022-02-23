@@ -25,9 +25,10 @@ class WaitingChatCell: UICollectionViewCell, SelfConfiguringCell {
   }
   // MARK: - Public function
   func configure<U: Hashable>(with value: U) {
-    guard let value = value as? MChat else {
+    guard let chat: MChat = value as? MChat else {
       return
     }
+    friendImageView.sd_setImage(with: URL(string: chat.friendUserImageStringURL), completed: nil)
 //    friendImageView.image = UIImage(named: value.userImageString)
   }
   // MARK: - Module function
